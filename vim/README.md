@@ -25,4 +25,7 @@
 
 - In any model 
     - Type `F4` to compile your current focused program sorce file
-        - Supported: `python`, `c`, `c++`, `ruby`
+        - Supported: `python`, `c`, `c++`, `ruby`, 'node.js'
+    - Using mouse Drag window split line, can change Window size
+    - Click Nerd Tree's item, can open in right window
+    
