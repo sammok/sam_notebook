@@ -1,4 +1,4 @@
-let mapleader = "," 
+let mapleader = ','
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -44,12 +44,11 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 
 " compile file automatically via file extension
-autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
-autocmd filetype c nnoremap <F4> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-autocmd filetype ruby nnoremap <F4> :w <bar> exec '!ruby -W '.shellescape('%')<CR>
-autocmd filetype javascript nnoremap <F4> :w <bar> exec '!node '.shellescape('%')<CR>
-
+autocmd filetype python map <F4> :w <bar> exec '!python '.shellescape('%')<CR>
+autocmd filetype c map <F4> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+autocmd filetype cpp map <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+autocmd filetype ruby map <F4> :w <bar> exec '!ruby -W '.shellescape('%')<CR>
+autocmd filetype javascript map <F4> :w <bar> exec '!node '.shellescape('%')<CR>
 
 " NERD_Tree config
 Plugin 'https://github.com/scrooloose/nerdtree.git'
@@ -75,23 +74,24 @@ autocmd FileType html,css,sass,less EmmetInstall
 " Syntax checking
 Plugin 'Syntastic'
 
-
-" Taglist
-" you can now use the ":TlistToggle" command to open/close the taglist 
-" window.
-Plugin 'taglist.vim'
-
-
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim
 Plugin 'kien/ctrlp.vim'
 " Tutorial: https://www.youtube.com/watch?v=9XrHk3xjYsw
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'order:btb,min:1,max:10,results:20'
+let g:ctrlp_working_path_mode = 0
 
 
 " surround target for html
 Plugin 'tpope/vim-surround'
+
+" easy grep
+Plugin 'dkprice/vim-easygrep'
+
+" tagbar
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
 
 
 " Molokai color scheme
@@ -122,6 +122,7 @@ imap <S> <C-N>
 "********************************************************
 ""                   一般性配置                          *
 "********************************************************
+set wrap " 自动换行
 set cursorline " 突出当前行
 set noeb " 去掉输入错误的提示音
 set noeb vb t_vb= " 禁止嘟嘟声
@@ -156,9 +157,6 @@ set showmatch
 syntax enable
 syntax on
           
-"指定配色方案为256色
-"set t_Co=256
-           
 "设置搜索时忽略大小写
 set ignorecase
             
@@ -199,10 +197,12 @@ filetype plugin on
 "启动智能补全
 "filetype plugin indent on
 
-" Turn off Enable text wrapping
-set nowrap
-
 " Turn on Display right margin and set it to 80 characters
 set colorcolumn=80
 
+" set ejs and jade file highlight
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.jade set filetype=html
 
+" set toggle paste
+set pastetoggle=<F2>
