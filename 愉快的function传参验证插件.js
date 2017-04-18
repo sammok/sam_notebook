@@ -1,3 +1,25 @@
+//  test case
+let rules = [
+    {
+        rule: 'yyyymmdd',
+        value: beginDate,
+        msg: 'beginDate: 2017-01-01'
+    },
+    {
+        rule: 'grade',
+        value: grade,
+        msg: 'grade: {number}'
+    },
+    {
+        rule: 'subject',
+        value: subjectCode,
+        msg: 'subjectCode: "Math"'
+    }
+];
+
+let testResult = throwParameterError(rules);
+
+//   Core function
 const parameterVerification = (data) => {
     var result = true;
     var messages = [];
