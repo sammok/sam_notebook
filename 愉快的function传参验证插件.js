@@ -18,6 +18,7 @@ let rules = [
 ];
 
 let testResult = throwParameterError(rules);
+!testResult.result && console.log(testResult.messages)
 
 //   Core function
 const parameterVerification = (data) => {
