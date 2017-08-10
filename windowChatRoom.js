@@ -21,8 +21,8 @@ var WINDOW_CHATROOM = (function (){
     }
 
     function emmit (roomName, data, notSelf) {
-        window.postMessage({ roomName: roomName, data: data }, '*');
-        !notSelf && window.top.postMessage({ roomName: roomName, data: data }, '*');
+        !notSelf && window.postMessage({ roomName: roomName, data: data }, '*');
+        window.top.postMessage({ roomName: roomName, data: data }, '*');
     }
 
     function listRoom () {
