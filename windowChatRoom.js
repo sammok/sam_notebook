@@ -26,9 +26,12 @@ var WINDOW_CHATROOM = (function (){
     }
 
     function listRoom () {
+        var keys = [];
         for (var i in rooms) {
             console.log(i+': '+rooms[i].length);
+            keys.push(i);
         }
+        return keys;
     }
 
     window.addEventListener('message', function (data) {
@@ -53,3 +56,24 @@ var WINDOW_CHATROOM = (function (){
         listRoom: listRoom
     });
 })();
+
+
+//  Example:
+//  Subject
+//  sending page height to parent window
+var body = document.body;
+var html = document.documentElement;
+var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+WINDOW_CHATROOM.emmit('profilePageHeight', height);
+
+
+// Subscriber
+var profilePageHeightHandler = WINDOW_CHATROOM.join('profilePageHeight', function (data) {
+    document.querySelector('iframe').height = data;
+});
+
+//  Unsubscriber
+WINDOW_CHATROOM.leave('profilePageHeight', profilePageHeightHandler);
+
+//  list all room
+WINDOW_CHATROOM.listRoom(); //  console each room, return a list of rooms
